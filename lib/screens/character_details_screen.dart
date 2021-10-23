@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:pablo_villa_4_2021_2_p1/models/character.dart';
+import 'package:pablo_villa_4_2021_2_p1/models/psi_power.dart';
 
 
 class CharacterDetailsScreen extends StatefulWidget {
@@ -20,8 +21,20 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
         title: Text(widget.character.name)
       ),
       body: Center(
-        child: Text('prube'),
+        child: _showCharacterDetails(),
       ),
+    );
+  }
+
+  Widget _showCharacterDetails() {
+    return SingleChildScrollView(
+      child: Column(
+        children:
+        [
+          Image.network(widget.character.img),
+          Text('Gender => ${widget.character.gender}'),
+        ]
+      )
     );
   }
 }
