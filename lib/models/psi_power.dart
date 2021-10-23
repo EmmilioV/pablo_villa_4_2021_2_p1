@@ -1,12 +1,12 @@
-class PsiPowers {
+class PsiPower {
   String description = '';
   String img = '';
   String sId = '';
   String name = '';
 
-  PsiPowers({required this.description, required this.img, required this.sId, required this.name});
+  PsiPower({required this.description, required this.img, required this.sId, required this.name});
 
-  PsiPowers.fromJson(Map<String, dynamic> json) {
+  PsiPower.fromJson(Map<String, dynamic> json) {
     description = json['description'];
     img = json['img'];
     sId = json['_id'];

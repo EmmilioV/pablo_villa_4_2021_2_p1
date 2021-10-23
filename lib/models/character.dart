@@ -1,23 +1,23 @@
-import 'psi_powers.dart';
+import 'psi_power.dart';
 
-class Characters {
+class Character {
   String gender = '';
   String img = '';
   String sId = '';
   String name = '';
-  List<PsiPowers> psiPowers = [];
+  List<PsiPower> psiPowers = [];
   int iV = 0;
 
-  Characters(
+  Character(
       {required this.gender, required this.img, required this.sId, required this.name, required this.psiPowers, required this.iV});
 
-  Characters.fromJson(Map<String, dynamic> json) {
+  Character.fromJson(Map<String, dynamic> json) {
     gender = json['gender'];
     img = json['img'];
     sId = json['_id'];
     name = json['name'];
     json['psiPowers'].forEach((v) {
-      psiPowers.add(new PsiPowers.fromJson(v));
+      psiPowers.add(new PsiPower.fromJson(v));
     });
     iV = json['__v'];
   }
