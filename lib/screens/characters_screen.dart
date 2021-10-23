@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:pablo_villa_4_2021_2_p1/helpers/constans.dart';
 import 'package:pablo_villa_4_2021_2_p1/models/character.dart';
+import 'package:pablo_villa_4_2021_2_p1/screens/character_details_screen.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
@@ -80,7 +81,15 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return ListView(
         children: _characters.map((e) {
           return InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => CharacterDetailsScreen(
+                    character: e)
+                )
+              );
+            },
             child: Container(
               margin: EdgeInsets.all(10),
               child: Column(
