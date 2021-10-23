@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pablo_villa_4_2021_2_p1/screens/characters_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,10 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      debugShowCheckedModeBanner: false,
+      title: 'Psychonauts',
+      home: CharactersScreen(),
     );
   }
 }
