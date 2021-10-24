@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,7 +32,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
       appBar: AppBar(
         title: Center(
           child: Text('Psychonauts characters'),
-        )
+        ),
+        backgroundColor: Colors.green,
       ),
       body: Center(
         child: _showLoader ? LoaderComponent(text: "Loader...") : _getCharactersContent(),
@@ -56,6 +58,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     setState(() {
       _showLoader = false;
     });
+
 
     var body = response.body;
     var decodedJson = jsonDecode(body);
@@ -96,18 +99,44 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 )
               );
             },
-            child: Container(
-              margin: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Text(
-                      e.name,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+            child: Card(
+              child: Container(
+                margin: EdgeInsets.all(8),
+                padding: EdgeInsets.all(4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: Image.network(
+                            e.img,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                      ],
                     ),
-                    Image.network(e.img)
-                ],
+                    Column(
+                      children: [
+                        Text(
+                          e.name,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey
+                            ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(Icons.arrow_right_sharp),
+                      ],
+                    )
+                  ],
+                ),
               ),
             )
           );

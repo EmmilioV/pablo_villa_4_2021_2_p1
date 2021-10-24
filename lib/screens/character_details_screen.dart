@@ -27,7 +27,8 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                 fontSize: 20,
               ),
             ) 
-          )
+          ),
+          backgroundColor: Colors.green,
       ),
       body: Container(
         margin: EdgeInsets.only(top: 15),
