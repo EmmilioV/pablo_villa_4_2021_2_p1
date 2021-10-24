@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:pablo_villa_4_2021_2_p1/components/loader_component.dart';
 import 'package:pablo_villa_4_2021_2_p1/helpers/constans.dart';
 import 'package:pablo_villa_4_2021_2_p1/models/character.dart';
 import 'package:pablo_villa_4_2021_2_p1/screens/character_details_screen.dart';
@@ -16,6 +17,7 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> {
   List<Character> _characters = [];
+  bool _showLoader = false;
 
   @override
   void initState() {
@@ -28,16 +30,20 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Personajes de psiconauta'),
+          child: Text('Psychonauts characters'),
         )
       ),
       body: Center(
-        child: _getCharactersContent(),
+        child: _showLoader ? LoaderComponent(text: "Loader...") : _getCharactersContent(),
       ),
     );
   }
 
   void _getCharacters() async {
+    setState(() {
+      _showLoader = true;
+    });
+
     var url = Uri.parse(Constans.apiUrl);
     var response = await http.get(
       url,
@@ -48,7 +54,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
     
     setState(() {
-      
+      _showLoader = false;
     });
 
     var body = response.body;

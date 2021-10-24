@@ -21,7 +21,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
       appBar: AppBar(
           title: Center(
             child: Text(
-              widget.character.name,
+              widget.character.name.toUpperCase(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -29,7 +29,8 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
             ) 
           )
       ),
-      body: Center(
+      body: Container(
+        margin: EdgeInsets.only(top: 15),
         child: _showCharacterDetails(),
       ),
     );
@@ -38,16 +39,13 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
   Widget _showCharacterDetails() {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children:
         [
-          Image.network(widget.character.img),
-          Text(
-            widget.character.name,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20
-            ),
-          ),
+          Image.network(
+            widget.character.img,
+            width: 125,
+          ),          
           Text(
             widget.character.gender,
             style: TextStyle(
@@ -69,7 +67,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
       columns: [
         DataColumn(label: Text("Power")),
         DataColumn(label: Text("Description")),
-        DataColumn(label: Text("image"), numeric: true),
+        DataColumn(label: Text("image")),
       ],
       rows:
         widget.character.psiPowers.map((e) => DataRow(
