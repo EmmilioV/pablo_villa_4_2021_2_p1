@@ -19,6 +19,7 @@ class LoaderComponent extends StatelessWidget {
           children: [
             Image(
               image: AssetImage("assets/loader.gif"),
+              width: 150,
             ),
             SizedBox(
               height: 25,
