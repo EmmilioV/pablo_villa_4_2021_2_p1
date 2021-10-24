@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -53,6 +54,26 @@ class _CharactersScreenState extends State<CharactersScreen> {
     setState(() {
       _showLoader = true;
     });
+
+    var connectivityResult = await Connectivity().checkConnectivity();
+    
+    if(connectivityResult == ConnectivityResult.none)
+    {
+      setState(() {
+        _showLoader = false;
+      });
+
+      await showAlertDialog(
+        context: context,
+        title: 'Error', 
+        message: 'Verify your internet connection',
+        actions: <AlertDialogAction>[
+            AlertDialogAction(key: null, label: 'Aceptar'),
+        ]
+      );
+          
+      return;
+    }
 
     var url = Uri.parse(Constans.apiUrl);
     var response = await http.get(
@@ -234,8 +255,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
   void _removeFilter() {
     setState(() {
       _isFiltered = false;
+      _characters = [];
     });
 
     _getCharacters();
   }
+
 }
